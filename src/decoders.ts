@@ -11,13 +11,13 @@ import { init as initAVIF } from "@jsquash/avif/decode";
 import { decode as decodeAVIF } from "@jsquash/avif";
 
 // @ts-ignore
-import jpegWASM from "node_modules/@jsquash/jpeg/codec/dec/mozjpeg_dec.wasm";
+import jpegWASM from "./codecs/mozjpeg_dec.wasm";
 // @ts-ignore
-import pngWASM from "node_modules/@jsquash/png/codec/pkg/squoosh_png_bg.wasm";
+import pngWASM from "./codecs/squoosh_png_bg.wasm";
 // @ts-ignore
-import webpWASM from "node_modules/@jsquash/webp/codec/dec/webp_dec.wasm";
+import webpWASM from "./codecs/webp_dec.wasm";
 // @ts-ignore
-import avifWASM from "node_modules/@jsquash/avif/codec/dec/avif_dec.wasm";
+import avifWASM from "./codecs/avif_dec.wasm";
 
 const importedModules: Record<string, boolean> = {};
 

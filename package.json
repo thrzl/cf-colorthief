@@ -1,8 +1,8 @@
 {
   "name": "cf-colorthief",
   "description": "colorthief for cloudflare workers",
-  "module": "index.ts",
-  "version": "0.0.1",
+  "module": "src/index.ts",
+  "version": "0.0.2",
   "type": "module",
   "license": "MIT",
   "devDependencies": {
