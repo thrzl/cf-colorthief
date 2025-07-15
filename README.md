@@ -8,6 +8,14 @@ the only con of this library is that it only includes support for PNG, JPEG, Web
 
 ## usage
 
+install with one of:
+```bash
+npm install cf-colorthief
+yarn add cf-colorthief
+pnpm add cf-colorthief
+bun add cf-colorthief
+```
+
 examples based on code from [calore](https://github.com/thrzl/calore), the cloudflare worker this library was built for.
 
 ### get a color palette
