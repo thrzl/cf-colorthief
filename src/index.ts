@@ -11,6 +11,7 @@ function createPixelArray(
   pixels: Uint8Array,
   pixelCount: number,
   quality: number,
+  includeWhite: boolean,
 ) {
   const pixelArray = [];
 
@@ -31,10 +32,10 @@ function createPixelArray(
     b = pixels[offset + 2] ?? 0;
     a = pixels[offset + 3] ?? 0;
 
-    // If pixel is mostly opaque and not white
+    // If pixel is mostly opaque and (not white or if white is allowed)
     if (
       (typeof a === "undefined" || a >= 125) &&
-      !(r > 250 && g > 250 && b > 250)
+      (!(r > 250 && g > 250 && b > 250) || includeWhite)
     )
       pixelArray.push([r, g, b]);
   }
@@ -71,6 +72,7 @@ export async function getPalette(
   colorCount = 10,
   quality = 10,
   decoder: DecodeFunction | undefined = undefined,
+  includeWhite: boolean = false,
 ): Promise<[number, number, number][]> {
   const options = validateOptions({ colorCount, quality });
 
@@ -81,6 +83,7 @@ export async function getPalette(
     imgData.data,
     pixelCount,
     options.quality,
+    includeWhite,
   );
 
   const cmap = quantize(pixelArray, options.colorCount);
@@ -93,8 +96,9 @@ export async function getColor(
   img: ArrayBuffer,
   quality = 10,
   decoder: DecodeFunction | undefined = undefined,
+  includeWhite: boolean = false,
 ): Promise<[number, number, number]> {
-  return (await getPalette(img, 5, quality, decoder))[0] as [
+  return (await getPalette(img, 5, quality, decoder, includeWhite))[0] as [
     number,
     number,
     number,
