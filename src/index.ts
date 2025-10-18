@@ -35,7 +35,7 @@ function createPixelArray(
     // If pixel is mostly opaque and (not white or if white is allowed)
     if (
       (typeof a === "undefined" || a >= 125) &&
-      (!(r > 250 && g > 250 && b > 250) || includeWhite)
+      (includeWhite || !(r > 250 && g > 250 && b > 250))
     )
       pixelArray.push([r, g, b]);
   }
